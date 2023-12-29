@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/zomato_image.png";
 import SearchBar from "../SearchBar";
+import { FaBars } from "react-icons/fa6";
+import { RxCross1 } from "react-icons/rx";
 
 const Navbar = () => {
+  const [bars, setBars] = useState(<FaBars />);
   return (
-    <nav className="w-full h-16 sticky flex justify-between px-12 max-md:px-2 items-center">
+    <nav className="w-full sticky bg-white z-30 top-0 h-16 flex justify-between px-12 max-md:px-2 items-center">
       <div className="w-28">
         <img src={logo} alt="logo" />
       </div>
       <div className="w-2/5">
         <SearchBar />
       </div>
-      <div>
+      <button
+        className="hidden max-md:block text-2xl mx-4 transition"
+        onClick={() => setBars(!bars)}
+      >
+        {bars ? <FaBars /> : <RxCross1 />}
+      </button>
+      <div
+        className={`max-md:absolute max-md:top-14 max-md:left-0 max-md:bg-gray-100 max-md:w-48 max-md:h-screen max-md:flex max-md:flex-col max-md:gap-4 max-md:p-4 ${
+          bars ? "myCollapse" : "myCollapse2"
+        }`}
+      >
         <button className="text-center py-1 px-3 rounded bg-red-500 text-white mx-2 border border-red-500 hover:bg-red-600">
           Login
         </button>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
 
 const SearchBar = () => {
   const data = [
@@ -36,7 +37,9 @@ const SearchBar = () => {
     setSearchItem(value);
 
     if (value) {
-      let filtered = data.filter((f) => f.title.includes(value));
+      let filtered = data.filter((f) =>
+        f.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      );
       setUserSearch(filtered);
     } else {
       setUserSearch([]);
@@ -48,7 +51,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="shadow-md flex items-center border py-1 px-2 w-full relative">
+    <div className="shadow-md max-sm:hidden flex rounded-full px-3 items-center border py-1 w-full relative">
       <input
         type="text"
         value={searchItem}
@@ -57,8 +60,12 @@ const SearchBar = () => {
         className="outline-none h-8 w-full"
       />
 
+      <button className="text-2xl text-gray-500 w-8 h-8">
+        <IoSearchSharp />
+      </button>
+
       <div
-        className={`w-full z-20 top-16 h-auto mx-auto rounded-md left-0 border absolute bg-gray-50 shadow-lg ${
+        className={`w-full z-20 top-14 h-auto mx-auto rounded-md left-0 border absolute bg-gray-50 shadow-lg ${
           userSearch.length > 0 ? "block" : "hidden"
         }`}
       >

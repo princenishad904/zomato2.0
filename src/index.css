@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer components {
+  .horizantalscroll::-webkit-scrollbar {
+    width: 0px;
+  }
+  @media screen and (max-width: 768px) {
+    .myCollapse {
+      transform: translateX(-245px);
+      transition: 0.2s;
+    }
+    .myCollapse2 {
+      transform: translateX(0px);
+      transition: 0.2s;
+    }
+  }
+}
