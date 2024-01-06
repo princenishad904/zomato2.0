@@ -4,10 +4,15 @@ import SearchBar from "../SearchBar";
 import { FaBars } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 
-const Navbar = () => {
+const Navbar = ({ shadow }) => {
   const [bars, setBars] = useState(<FaBars />);
+
   return (
-    <nav className="w-full sticky bg-white z-30 top-0 h-16 flex justify-between px-12 max-md:px-2 items-center">
+    <nav
+      className={`w-full sticky bg-white z-30 top-0 h-16 flex justify-between px-12 max-md:px-2 items-center ${
+        shadow ? "shadow-md" : null
+      } `}
+    >
       <div className="w-28">
         <img src={logo} alt="logo" />
       </div>

@@ -1,8 +1,9 @@
 import React, { useReducer, useRef } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import SliderFoodCard from "./SliderFoodCard";
 
-const Slider = () => {
+const Slider = ({ children }) => {
   const handleScroll = useRef();
   function scrollFun(state, action) {
     switch (action.type) {
@@ -37,12 +38,7 @@ const Slider = () => {
           ref={handleScroll}
           className="w-full whitespace-nowrap overflow-x-scroll scroll-smooth relative p-3 horizantalscroll mt-4"
         >
-          <div className="w-36 h-36 max-sm:w-28 max-sm:h-28 rounded-full truncate inline-block mx-4 border">
-            <img
-              src="https://b.zmtcdn.com/data/o2_assets/d0bd7c9405ac87f6aa65e31fe55800941632716575.png"
-              alt=""
-            />
-          </div>
+          {children}
         </div>
       </div>
     </div>

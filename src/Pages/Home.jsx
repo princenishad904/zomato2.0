@@ -2,6 +2,9 @@ import React from "react";
 import Layout from "../Components/Layout/Layout";
 import Pizza from "../assets/Pizza.png";
 import Slider from "../Components/Slider";
+import FoodCard from "../Components/FoodCard";
+import Filter from "../Components/Filter";
+import SliderFoodCard from "../Components/SliderFoodCard";
 
 const Home = () => {
   return (
@@ -19,7 +22,25 @@ const Home = () => {
           <img src={Pizza} alt="" className="w-96 max-lg:w-80" />
         </div>
       </div>
-      <Slider />
+      <Slider>
+        <SliderFoodCard name={"Pizza"} />
+        <SliderFoodCard name={"Burger"} />
+      </Slider>
+
+      <div className="w-4/5 my-4 max-xl:w-11/12  mx-auto">
+        <h1 className="text-3xl max-sm:text-xl py-4">
+          Delivery Restaurants in Gorakhpur
+        </h1>
+        {/* <Filter /> */}
+        <div className="w-full flex  justify-center gap-7 flex-wrap">
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+        </div>
+      </div>
     </Layout>
   );
 };

@@ -5,7 +5,7 @@
   .horizantalscroll::-webkit-scrollbar {
     width: 0px;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .myCollapse {
       transform: translateX(-245px);
       transition: 0.2s;
