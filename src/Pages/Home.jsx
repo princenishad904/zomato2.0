@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../Components/Layout/Layout";
 import Pizza from "../assets/Pizza.png";
 import Slider from "../Components/Slider";
@@ -7,6 +7,18 @@ import Filter from "../Components/Filter";
 import SliderFoodCard from "../Components/SliderFoodCard";
 
 const Home = () => {
+  const [FoodData, setFoodData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(
+        "https://princenishad904.github.io/prortfolio_projects_v1_api/zomato_api.json"
+      );
+
+      const food = await res.json();
+
+      setFoodData(food);
+    })();
+  }, []);
   return (
     <Layout>
       <div className="w-full flex items-center " style={{ height: "75vh" }}>
@@ -25,6 +37,13 @@ const Home = () => {
       <Slider>
         <SliderFoodCard name={"Pizza"} />
         <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
+        <SliderFoodCard name={"Burger"} />
       </Slider>
 
       <div className="w-4/5 my-4 max-xl:w-11/12  mx-auto">
@@ -33,12 +52,18 @@ const Home = () => {
         </h1>
         {/* <Filter /> */}
         <div className="w-full flex  justify-center gap-7 flex-wrap">
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
-          <FoodCard />
+          {FoodData.map((items) => (
+            <FoodCard
+              key={items.id}
+              poster={items.poster}
+              name={items.name}
+              price={items.price}
+              where={items.from}
+              discount={items.discount}
+              deliveryTime={items.deliveryTime}
+              rating={items.rating}
+            />
+          ))}
         </div>
       </div>
     </Layout>

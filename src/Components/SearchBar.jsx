@@ -2,32 +2,18 @@ import React, { useEffect, useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 
 const SearchBar = () => {
-  const data = [
-    {
-      id: 1,
-      title: "pizza",
-    },
-    {
-      id: 4,
-      title: "pizza",
-    },
-    {
-      id: 5,
-      title: "burger",
-    },
-    {
-      id: 6,
-      title: "burger",
-    },
-    {
-      id: 7,
-      title: "zampa",
-    },
-    {
-      id: 8,
-      title: "bamara",
-    },
-  ];
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(
+        "https://princenishad904.github.io/prortfolio_projects_v1_api/zomato_api.json"
+      );
+
+      const food = await res.json();
+
+      setData(food);
+    })();
+  }, []);
 
   const [searchItem, setSearchItem] = useState("");
   const [userSearch, setUserSearch] = useState([]);
@@ -38,7 +24,7 @@ const SearchBar = () => {
 
     if (value) {
       let filtered = data.filter((f) =>
-        f.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+        f.name.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       );
       setUserSearch(filtered);
     } else {
@@ -51,10 +37,11 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="shadow-md max-sm:hidden flex rounded-full px-3 items-center border py-1 w-full relative">
+    <div className="shadow-md  flex rounded-full px-3 items-center border py-1 w-full relative">
       <input
         type="text"
         value={searchItem}
+        autoF
         onChange={searchInput}
         placeholder="Search for restaurant couisine a dish"
         className="outline-none h-8 w-full"
@@ -73,10 +60,17 @@ const SearchBar = () => {
           {userSearch.slice(0, 6).map((f) => (
             <li
               className="my-2 cursor-pointer"
-              onClick={() => handleSearch(f.title)}
+              onClick={() => handleSearch(f.name)}
               key={f.id}
             >
-              {f.title}
+              <div className="flex items-center gap-4">
+                <img
+                  src={f.poster}
+                  alt=""
+                  className="w-16 object-cover h-16 rounded-md"
+                />
+                {f.name}
+              </div>
             </li>
           ))}
         </ul>
